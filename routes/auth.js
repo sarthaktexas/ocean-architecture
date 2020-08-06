@@ -24,7 +24,7 @@ router.get('/callback', function (req, res, next) {
       if (err) { return next(err); }
       const returnTo = req.session.returnTo;
       delete req.session.returnTo;
-      res.redirect('/dashboard');
+      res.redirect(returnTo || '/dashboard');
     });
   })(req, res, next);
 });
@@ -33,7 +33,7 @@ router.get('/callback', function (req, res, next) {
 router.get('/logout', (req, res) => {
   req.logout();
 
-  var returnTo = req.protocol + '://' + req.hostname;
+  var returnTo = req.protocol + '://' + process.env.DOMAIN;
   var port = req.connection.localPort;
   if (port !== undefined && port !== 80 && port !== 443) {
     returnTo += ':' + port;
