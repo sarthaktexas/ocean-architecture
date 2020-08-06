@@ -3,6 +3,8 @@ var router = express.Router();
 var stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 var generatePassword = require('password-generator');
 var request = require('request');
+const Discord = require('discord.js');
+const webhookClient = new Discord.WebhookClient(process.env.WEBHOOK_ID, process.env.WEBHOOK_TOKEN);
 
 /* GET home page. */
 router.get('/', async function (req, res, next) {
@@ -78,16 +80,41 @@ router.post('/webhook', bodyParser.raw({
       request(options, callback);
 
       // Send email to user with password.
+
+      // Send Discord Webhook event
+
+      const embed = new Discord.MessageEmbed()
+        .setTitle('New Payment and User')
+        .setColor('#0099ff')
+        .setDescription(paymentMethod.charges.data.name + '(' + paymentMethod.charges.data.email + ') has signed up and paid.');
+
+      webhookClient.send('New Payment and User!', {
+        username: 'OceanBot',
+        avatarURL: 'https://i.imgur.com/wSTFkRM.png',
+        embeds: [embed],
+      });
       break;
     case 'invoice.payment_failed':
       const paymentMethod = event.data.object;
+      // Send Discord Webhook event
+
+      const embed = new Discord.MessageEmbed()
+        .setTitle('Failed Payment!')
+        .setColor('#0099ff')
+        .setDescription(paymentMethod.charges.data.name + '(' + paymentMethod.charges.data.email + ') has not paid for the month. Delete his account in the Auth0 Dashboard.');
+
+      webhookClient.send('Failed Payment!', {
+        username: 'FailureBot',
+        avatarURL: 'https://i.imgur.com/wSTFkRM.png',
+        embeds: [embed],
+      });
       break;
-    // case 'invoice.payment_action_required':
-    //   const paymentMethod = event.data.object;
-    //   break;
-    // case 'invoice.paid':
-    //   const paymentMethod = event.data.object;
-    //   break;
+      // case 'invoice.payment_action_required':
+      //   const paymentMethod = event.data.object;
+      //   break;
+      // case 'invoice.paid':
+      //   const paymentMethod = event.data.object;
+      //   break;
     default:
       return response.status(400).end();
   }
@@ -97,6 +124,5 @@ router.post('/webhook', bodyParser.raw({
     received: true
   });
 });
-
 
 module.exports = router;
