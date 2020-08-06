@@ -83,7 +83,7 @@ router.post('/webhook', bodyParser.raw({
 
       // Send Discord Webhook event
 
-      const embed = new Discord.MessageEmbed()
+      const successembed = new Discord.MessageEmbed()
         .setTitle('New Payment and User')
         .setColor('#0099ff')
         .setDescription(paymentMethod.charges.data.name + '(' + paymentMethod.charges.data.email + ') has signed up and paid.');
@@ -91,14 +91,14 @@ router.post('/webhook', bodyParser.raw({
       webhookClient.send('New Payment and User!', {
         username: 'OceanBot',
         avatarURL: 'https://i.imgur.com/wSTFkRM.png',
-        embeds: [embed],
+        embeds: [successembed],
       });
       break;
     case 'invoice.payment_failed':
       const paymentMethod = event.data.object;
       // Send Discord Webhook event
 
-      const embed = new Discord.MessageEmbed()
+      const failembed = new Discord.MessageEmbed()
         .setTitle('Failed Payment!')
         .setColor('#0099ff')
         .setDescription(paymentMethod.charges.data.name + '(' + paymentMethod.charges.data.email + ') has not paid for the month. Delete his account in the Auth0 Dashboard.');
@@ -106,7 +106,7 @@ router.post('/webhook', bodyParser.raw({
       webhookClient.send('Failed Payment!', {
         username: 'FailureBot',
         avatarURL: 'https://i.imgur.com/wSTFkRM.png',
-        embeds: [embed],
+        embeds: [failembed],
       });
       break;
       // case 'invoice.payment_action_required':
