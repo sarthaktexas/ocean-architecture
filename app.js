@@ -3,6 +3,7 @@ var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
+var MemoryStore = require('memorystore')(session)
 var dotenv = require('dotenv');
 var passport = require('passport');
 var Auth0Strategy = require('passport-auth0');
@@ -53,7 +54,9 @@ app.use(cookieParser());
 
 // config express-session
 var sess = {
-  store: memorystore,
+  store: new MemoryStore({
+    checkPeriod: 86400000 // prune expired entries every 24h
+  }),
   secret: 'oceanonlyy',
   cookie: {},
   resave: false,
