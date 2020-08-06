@@ -1,8 +1,184 @@
-extends layout
-
-block content
-  .w3-container
-    if locals.user
-      h4 You are logged in!
-    else
-      h4 You are not logged in! Please #[a(href="/login") Log In] to continue.
+doctype html
+head
+  meta(charset='utf-8')
+  title OceanAIO.com | Best group for methods
+  meta(name='description', content='')
+  meta(name='viewport', content='width=device-width, initial-scale=1')
+  link(rel='shortcut icon', href='assets/images/favicon.png', type='image/png')
+  link(rel='stylesheet', href='assets/css/animate.css')
+  link(rel='stylesheet', href='assets/css/magnific-popup.css')
+  link(rel='stylesheet', href='assets/css/slick.css')
+  link(rel='stylesheet', href='assets/css/LineIcons.css')
+  link(rel='stylesheet', href='assets/css/font-awesome.min.css')
+  link(rel='stylesheet', href='assets/css/bootstrap.min.css')
+  link(rel='stylesheet', href='assets/css/default.css')
+  link(rel='stylesheet', href='assets/css/style.css')
+.preloader
+  .loader
+    .ytp-spinner
+      .ytp-spinner-container
+        .ytp-spinner-rotator
+          .ytp-spinner-left
+            .ytp-spinner-circle
+          .ytp-spinner-right
+            .ytp-spinner-circle
+header.header-area
+  .navbar-area
+    .container
+      .row
+        .col-lg-12
+          nav.navbar.navbar-expand-lg
+            a.navbar-brand(href='index.html')
+              img(src='assets/images/plan.png')
+            #navbarSupportedContent.navbar-collapse.sub-menu-bar(style='display: flex;')
+              .navbar-btn.d-sm-inline-block(style='margin-left: auto;')
+              if locals.user
+                a.main-btn(data-scroll-nav='0', href='./dashboard') Dashboard
+              else
+                a.main-btn(data-scroll-nav='0', href='./dashboard') Log In
+            // navbar collapse
+          // navbar
+      // row
+    // container
+  // navbar area
+  #home.header-hero.bg_cover
+    .background
+    .container
+      .row.justify-content-center
+        .col-lg-8
+          .header-hero-content.text-center
+            h2.header-title.wow.fadeInUp(data-wow-duration='1.3s', data-wow-delay='0.5s')
+              | The best group
+              br
+              | for methods
+            p.header-sub-title.text.wow.fadeInUp(data-wow-duration='1.3s', data-wow-delay='0.8s')
+              | OceanPremium provides Methods, exclusive information, unique custom Methods, partnerships and so much more, ensuring members maximise their profits.
+            a.main-btn.wow.fadeInUp(href='#', data-wow-duration='1.3s', data-wow-delay='1.1s') Join Now
+          // header hero content
+      // row
+    // container
+  // header hero
+section#about.about-area.pt-70
+  .container
+    .row
+      .col-lg-6
+        .about-content.mt-50.wow.fadeInLeftBig(data-wow-duration='1s', data-wow-delay='0.5s')
+          .section-title
+            .line
+            h3.title 1 on 1 Support
+          // section title
+          p.text
+            | Each member is able to book a 1 on 1 mentor session with one of our expert staff members who have secured thousands of coveted items, where they can discuss how to improve your skills, therefore, making our members more experienced and better than many others.
+        // about content
+      .col-lg-6
+        .about-image.text-center.mt-50.wow.fadeInRightBig(data-wow-duration='1s', data-wow-delay='0.5s')
+          img(src='https://cdn.cybersole.io/media/success.svg', alt='about')
+        // about image
+    // row
+  // container
+  .about-shape-1
+    img(src='assets/images/about-shape-1.svg', alt='shape')
+.container-fluid2
+  .row.justify-content-center
+    .col-lg-12.col-md-12.col-sm-12
+      .single-plan.text-center.mt-30.wow.fadeIn.text-center(data-wow-duration='1s', data-wow-delay='0.2s')
+        .plan-content
+          .plan-image
+            img(src='assets/images/plan.png')
+          .plan-sub-title
+            h4 PREMIUM PACKAGE
+            br
+          .plan-title
+            h4
+              | $8.5 
+              span(style='font-size: 20px; color: #929292;') / month
+          .line2
+          .plan-sub-title2
+            h4 This package includes;
+            br
+          ul
+            li All Methods
+            li Weekly Methods
+            li Weekly Softwares
+            li 24/7 Support
+            li 1 on 1 Refunding
+            li And much more ...
+          a.main-btn.wow.fadeInUp(href='#', data-wow-duration='1.1s', data-wow-delay='0s', style='margin: 50px 0;') Subscribe
+      // single services
+// row
+section.about-area.pt-70
+  .about-shape-2
+    img(src='assets/images/about-shape-2.svg', alt='shape')
+  .container
+    .row(style='flex-wrap: inherit;')
+      .col-lg-6.order-lg-last
+        .about-content.mt-50.wow.fadeInLeftBig(data-wow-duration='1s', data-wow-delay='0.5s')
+          .section-title
+            .line
+            h3.title Still Thinking?
+            h4(style='margin-top: 10px; font-weight: 100;') Don&rsquo;t hesitate in joining us, here is why:
+          // section title
+          p.text
+            | We provide everything you could ever wish for during your journey. We make sure you are well equipped for every store. Our tools, partnerships, Methods, staff members, information etc. ensures that you have the highest chances of getting your free Order. This is the next generation.
+        // about content
+      .col-lg-6.order-lg-first
+        .about-image.text-center.mt-50.wow.fadeInRightBig(data-wow-duration='1s', data-wow-delay='0.5s')
+          img(src='https://cdn.cybersole.io/media/sites.svg', alt='about')
+        // about image
+    // row
+  // container
+section#about.about-area.pt-70
+  .about-shape-1
+    img(src='assets/images/about-shape-1.svg', alt='shape')
+  .container
+    .row.justify-content-center
+      .col-lg-10
+        .section-title.text-center.pb-40
+          .line.m-auto
+          h3.title How it works
+          p It may seem hard at first, but it&apos;s actually surprisingly easy!
+        // section title
+    // row
+    .container-fluid3
+      .row
+        .col-lg-6
+          #how-it-works.about-image.text-center.wow.fadeInLeftBig(data-wow-duration='1s', data-wow-delay='0.5s')
+            img(src='https://cdn.cybersole.io/media/success.svg', alt='about')
+          // about image
+        .col-lg-6
+          .card-steps
+            .single-step.lined
+              .process-icon
+                i.fa.fa-sign-in
+              .process-text
+                h2 Sign Up
+                p Register an account and purchase your desired plan
+            .single-step.lined
+              .process-icon
+                i.fa.fa-user
+              .process-text
+                h2 Fill in your data
+                p Create your profiles
+            .single-step
+              .process-icon
+                i.fa.fa-check
+              .process-text
+                h2 Ready to go
+                p Simply press &quot;Start&quot; and let the Ocean take care of the rest!
+      // row
+  // container
+script(src='assets/js/vendor/jquery-1.12.4.min.js')
+script(src='assets/js/vendor/modernizr-3.7.1.min.js')
+script(src='assets/js/popper.min.js')
+script(src='assets/js/bootstrap.min.js')
+script(src='assets/js/plugins.js')
+script(src='assets/js/slick.min.js')
+script(src='assets/js/ajax-contact.js')
+script(src='assets/js/waypoints.min.js')
+script(src='assets/js/jquery.counterup.min.js')
+script(src='assets/js/jquery.magnific-popup.min.js')
+script(src='assets/js/jquery.easing.min.js')
+script(src='assets/js/scrolling-nav.js')
+script(src='assets/js/wow.min.js')
+script(src='assets/js/particles.min.js')
+script(src='assets/js/main.js')
