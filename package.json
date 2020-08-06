@@ -1,0 +1,21 @@
+{
+  "name": "auth0-nodejs-webapp-sample-new-test",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.5",
+    "debug": "~4.1.1",
+    "dotenv": "^8.2.0",
+    "express": "~4.17.1",
+    "express-session": "^1.17.1",
+    "http-errors": "~1.8.0",
+    "morgan": "~1.10.0",
+    "passport": "^0.4.1",
+    "passport-auth0": "^1.3.3",
+    "pug": "^2.0.4"
+  }
+}
