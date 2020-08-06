@@ -24,7 +24,7 @@ router.get('/callback', function (req, res, next) {
       if (err) { return next(err); }
       const returnTo = req.session.returnTo;
       delete req.session.returnTo;
-      res.redirect(returnTo || 'https://oceanaio.com/dashboard');
+      res.redirect(returnTo || '/dashboard');
     });
   })(req, res, next);
 });
