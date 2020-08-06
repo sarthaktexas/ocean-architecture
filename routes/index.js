@@ -56,8 +56,6 @@ router.post('/webhook', bodyParser.raw({
         'Content-Type': 'application/json'
       };
 
-      var dataString = '{"email":"john.doe@gmail.com","app_metadata":{},"name":"John Doe","user_id":"abc","connection":"Username-Password-Authentication","password":"Password123!"}';
-
       var options = {
         url: 'https://oceanaio.us.auth0.com/api/v2/users',
         method: 'POST',
