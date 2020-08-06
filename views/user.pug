@@ -1,11 +1,76 @@
-extends layout
-
-block content
-  .w3-card-4
-    h1 Welcome #{user.nickname}
-    img(src=user.picture)
-    h2 User profile
-    p This is the content of <code>req.user</code>.
-    p Note: <code>_raw</code> and <code>_json</code> properties have been ommited.
-    pre
-      code #{userProfile}
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    title= title
+    meta(name='description', content='')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='shortcut icon', href='assets/images/favicon.png', type='image/png')
+    link(rel='stylesheet', href='assets/css/animate.css')
+    link(rel='stylesheet', href='assets/css/magnific-popup.css')
+    link(rel='stylesheet', href='assets/css/slick.css')
+    link(rel='stylesheet', href='assets/css/LineIcons.css')
+    link(rel='stylesheet', href='assets/css/font-awesome.min.css')
+    link(rel='stylesheet', href='assets/css/bootstrap.min.css')
+    link(rel='stylesheet', href='assets/css/default.css')
+    link(rel='stylesheet', href='assets/css/style.css')
+    link(rel='stylesheet', href='assets/css/util.css')
+    link(rel='stylesheet', type='text/css', href='assets/Linearicons-Free-v1.0.0/icon-font.min.css')
+  .preloader
+    .loader
+      .ytp-spinner
+        .ytp-spinner-container
+          .ytp-spinner-rotator
+            .ytp-spinner-left
+              .ytp-spinner-circle
+            .ytp-spinner-right
+              .ytp-spinner-circle
+  header.header-area
+    .navbar-area
+      .container
+        .row
+          .col-lg-12
+            nav.navbar.navbar-expand-lg
+              a.navbar-brand(href='index.html')
+                img(src='assets/images/plan.png')
+              #navbarSupportedContent.navbar-collapse.sub-menu-bar(style='display: flex;')
+                .navbar-btn.d-sm-inline-block(style='margin-left: auto;')
+                  a.main-btn(data-scroll-nav='0', href='/logout') Logout
+              // navbar collapse
+            // navbar
+        // row
+      // container
+    // navbar area
+    #home.header-hero.bg_cover(style='background: #182538;')
+      .about-shape-1(style='height: 0;')
+        img(src='assets/images/about-shape-1.svg', alt='shape')
+      .about-shape-2(style='top: 50%; height: 0;')
+        img(src='assets/images/about-shape-2.svg', alt='shape')
+      .limiter
+        .container-dashboard
+          .wrap-dashboard.p-l-50.p-r-50.p-t-77.p-b-30
+            span.dashboard-form-title.p-b-55
+              | Welcome, #{user.displayName}
+            .line3
+            .single-services
+              .services-content
+                .services-title
+                  h4 Subscription Type:
+                p Premium
+                a.main-btn.wow.fadeInUp(href='#', data-wow-duration='1.1s', data-wow-delay='0s', style='margin: 25px 0;') Subscribe
+    // header hero
+  script(src='assets/js/vendor/jquery-1.12.4.min.js')
+  script(src='assets/js/vendor/modernizr-3.7.1.min.js')
+  script(src='assets/js/popper.min.js')
+  script(src='assets/js/bootstrap.min.js')
+  script(src='assets/js/plugins.js')
+  script(src='assets/js/slick.min.js')
+  script(src='assets/js/ajax-contact.js')
+  script(src='assets/js/waypoints.min.js')
+  script(src='assets/js/jquery.counterup.min.js')
+  script(src='assets/js/jquery.magnific-popup.min.js')
+  script(src='assets/js/jquery.easing.min.js')
+  script(src='assets/js/scrolling-nav.js')
+  script(src='assets/js/wow.min.js')
+  script(src='assets/js/particles.min.js')
+  script(src='assets/js/main.js')
