@@ -63,9 +63,8 @@ router.post('/webhook', bodyParser.raw({
         method: 'POST',
         headers: headers,
         body: {
-          "email": "john.doe@gmail.com",
-          "app_metadata": {},
-          "name": "John Doe",
+          "email": data.object.charges.data.email,
+          "name": data.object.charges.data.name,
           "connection": "Username-Password-Authentication",
           "password": password
         }
