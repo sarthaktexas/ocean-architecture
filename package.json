@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "body-parser": "^1.19.0",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.5",
@@ -21,7 +22,6 @@
     "passport-auth0": "^1.3.3",
     "password-generator": "^2.3.2",
     "pug": "^2.0.4",
-    "request": "^2.88.2",
-    "stripe": "^8.83.0"
+    "stripe": "^8.84.0"
   }
 }
