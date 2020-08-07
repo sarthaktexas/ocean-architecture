@@ -67,7 +67,8 @@ router.post('/webhook', bodyParser.raw({
           "email": paymentIntent.charges.data.email,
           "name": paymentIntent.charges.data.name,
           "connection": "Username-Password-Authentication",
-          "password": password
+          "password": password,
+          "user_id": customer.id
         }
       };
 
