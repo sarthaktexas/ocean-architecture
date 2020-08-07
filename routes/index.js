@@ -64,8 +64,8 @@ router.post('/webhook', bodyParser.raw({
         method: 'POST',
         headers: headers,
         body: {
-          "email": paymentIntent.charges.data[1].billing_details.email,
-          "name": paymentIntent.charges.data[1].billing_details.name,
+          "email": paymentIntent.charges.data[0].billing_details.email,
+          "name": paymentIntent.charges.data[0].billing_details.name,
           "connection": "Username-Password-Authentication",
           "password": password,
           "user_id": paymentIntent.customer
@@ -102,7 +102,7 @@ router.post('/webhook', bodyParser.raw({
       const failembed = new Discord.MessageEmbed()
         .setTitle('Failed Payment!')
         .setColor('#0099ff')
-        .setDescription(paymentMethod.charges.data.name + '(' + paymentMethod.charges.data.email + ') has not paid for the month. Delete thier account in the Auth0 Dashboard.');
+        .setDescription(paymentIntent.charges.data[0].billing_details.name + '(' + paymentIntent.charges.data[0].billing_details.name + ') has not paid for the month. Delete thier account in the Auth0 Dashboard.');
 
       webhookClient.send({
         username: 'Failure Bot',
