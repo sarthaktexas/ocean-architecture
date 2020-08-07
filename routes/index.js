@@ -2,9 +2,10 @@ var express = require('express');
 var router = express.Router();
 var stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 var generatePassword = require('password-generator');
-const fetch = require('node-fetch');
-const Discord = require('discord.js');
-const webhookClient = new Discord.WebhookClient(process.env.WEBHOOK_ID, process.env.WEBHOOK_TOKEN);
+var bodyParser = require('body-parser');
+var fetch = require('node-fetch');
+var Discord = require('discord.js');
+var webhookClient = new Discord.WebhookClient(process.env.WEBHOOK_ID, process.env.WEBHOOK_TOKEN);
 
 /* GET home page. */
 router.get('/', async function (req, res, next) {
@@ -31,7 +32,6 @@ router.get('/', async function (req, res, next) {
   }
 });
 
-const bodyParser = require('body-parser');
 router.post('/webhook', bodyParser.raw({
   type: 'application/json'
 }), (request, response) => {
