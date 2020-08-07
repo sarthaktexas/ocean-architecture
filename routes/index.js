@@ -89,9 +89,9 @@ router.post('/webhook', bodyParser.raw({
         .setColor('#0099ff')
         .setDescription(paymentMethod.charges.data.name + '(' + paymentMethod.charges.data.email + ') has signed up and paid.');
 
-      webhookClient.send('New Payment and User!', {
-        username: 'OceanBot',
-        avatarURL: 'https://i.imgur.com/wSTFkRM.png',
+      webhookClient.send({
+        username: 'Success Bot',
+        avatarURL: 'https://www.americasfinestlabels.com/includes/work/image_cache/a4cb211cac7697694b91b494f3620ca4.thumb.jpg',
         embeds: [successembed],
       });
       break;
@@ -102,11 +102,11 @@ router.post('/webhook', bodyParser.raw({
       const failembed = new Discord.MessageEmbed()
         .setTitle('Failed Payment!')
         .setColor('#0099ff')
-        .setDescription(paymentMethod.charges.data.name + '(' + paymentMethod.charges.data.email + ') has not paid for the month. Delete his account in the Auth0 Dashboard.');
+        .setDescription(paymentMethod.charges.data.name + '(' + paymentMethod.charges.data.email + ') has not paid for the month. Delete thier account in the Auth0 Dashboard.');
 
-      webhookClient.send('Failed Payment!', {
-        username: 'FailureBot',
-        avatarURL: 'https://i.imgur.com/wSTFkRM.png',
+      webhookClient.send({
+        username: 'Failure Bot',
+        avatarURL: 'https://www.logolynx.com/images/logolynx/cc/cc69b8e3f205d98a6586a715df8f9b92.gif',
         embeds: [failembed],
       });
       break;
