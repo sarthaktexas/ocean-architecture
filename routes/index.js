@@ -86,7 +86,7 @@ router.post('/webhook', bodyParser.raw({
       const successembed = new Discord.MessageEmbed()
         .setTitle('New Payment and User')
         .setColor('#0099ff')
-        .setDescription(paymentIntent.charges.data[0].billing_details.name + ' (' + paymentIntent.charges.data[0].billing_details.email + ') has signed up and paid.');
+        .setDescription(paymentIntent.charges.data[0].billing_details.name + ' (*' + paymentIntent.charges.data[0].billing_details.email + '*) has signed up and paid.');
 
       webhookClient.send({
         username: 'Success Bot',
