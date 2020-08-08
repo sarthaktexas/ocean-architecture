@@ -140,7 +140,11 @@ router.post('/webhook', bodyParser.raw({
           headers: headers,
         })
         .then(res => res.json())
-        .then(json => console.log(json));
+        .then(json => console.log(json))
+        .then(stripe.customers.del(
+          subscriptionEvent.customer,
+          function (err, confirmation) {}
+        ));
 
       // Send Discord Webhook event
 
