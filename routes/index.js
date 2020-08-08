@@ -50,6 +50,7 @@ router.post('/webhook', bodyParser.raw({
       /*  When payment succeeded, generate a random password
           and send an API call to Auth0 to create a user */
       const paymentIntent = event.data.object;
+      console.log(paymentIntent);
       var password = generatePassword(12, false);
 
       var body = {
