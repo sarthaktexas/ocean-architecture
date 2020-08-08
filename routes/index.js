@@ -51,6 +51,7 @@ router.post('/webhook', bodyParser.raw({
           and send an API call to Auth0 to create a user */
       const paymentIntent = event.data.object;
       var password = generatePassword(12, false);
+      console.log(password);
 
       var body = JSON.stringify({
         "email": paymentIntent.charges.data[0].billing_details.email,
