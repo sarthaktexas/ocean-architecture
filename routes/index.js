@@ -133,7 +133,7 @@ router.post('/webhook', bodyParser.raw({
         }
       }
 
-      const deleteUrl = 'https://oceanaio.us.auth0.com/api/v2/users/' + subscriptionEvent.customer
+      const deleteUrl = 'https://oceanaio.us.auth0.com/api/v2/users/auth0|' + subscriptionEvent.customer
 
       fetch(deleteUrl, {
           method: 'DELETE',
