@@ -86,7 +86,7 @@ router.post('/webhook', bodyParser.raw({
       const successembed = new Discord.MessageEmbed()
         .setTitle('New Payment and User')
         .setColor('#0099ff')
-        .setDescription(paymentMethod.charges.data.name + '(' + paymentMethod.charges.data.email + ') has signed up and paid.');
+        .setDescription(paymentMethod.charges.data.name + ' (' + paymentMethod.charges.data.email + ') has signed up and paid.');
 
       webhookClient.send({
         username: 'Success Bot',
@@ -100,8 +100,8 @@ router.post('/webhook', bodyParser.raw({
 
       const failembed = new Discord.MessageEmbed()
         .setTitle('Failed Payment!')
-        .setColor('#0099ff')
-        .setDescription(paymentIntent.charges.data[0].billing_details.name + '(' + paymentIntent.charges.data[0].billing_details.name + ') has not paid for the month. Delete thier account in the Auth0 Dashboard.');
+        .setColor('#DE1738')
+        .setDescription(paymentIntent.charges.data[0].billing_details.name + ' (' + paymentIntent.charges.data[0].billing_details.name + ') has not paid for the month. Delete thier account in the Auth0 Dashboard.');
 
       webhookClient.send({
         username: 'Failure Bot',
@@ -117,9 +117,9 @@ router.post('/webhook', bodyParser.raw({
       // Send Discord Webhook event
 
       const repayembed = new Discord.MessageEmbed()
-        .setTitle('New Payment and User')
-        .setColor('#0099ff')
-        .setDescription(invoicePaid.customer + '(' + invoicePaid.customer_email + ') has paid for this month.');
+        .setTitle('Repayment')
+        .setColor('#50C878')
+        .setDescription(invoicePaid.customer + ' (*' + invoicePaid.customer_email + '*) has paid for this month.');
 
       webhookClient.send({
         username: 'Success Bot',
