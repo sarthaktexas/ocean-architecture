@@ -49,8 +49,8 @@ router.post('/webhook', bodyParser.raw({
     case 'payment_intent.succeeded':
       /*  When payment succeeded, generate a random password
           and send an API call to Auth0 to create a user */
-      var paymentIntent = event.data.object;
-      var password = generatePassword(12, false)
+      const paymentIntent = event.data.object;
+      var password = generatePassword(12, false);
 
       var body = {
         "email": paymentIntent.charges.data[0].billing_details.email,
@@ -109,12 +109,24 @@ router.post('/webhook', bodyParser.raw({
         embeds: [failembed],
       });
       break;
-      // case 'invoice.payment_action_required':
-      //   const paymentMethod = event.data.object;
-      //   break;
-      // case 'invoice.paid':
-      //   const paymentMethod = event.data.object;
-      //   break;
+    case 'invoice.payment_action_required':
+      const paymentMethod = event.data.object;
+      break;
+    case 'invoice.paid':
+      const invoicePaid = event.data.object;
+      // Send Discord Webhook event
+
+      const repayembed = new Discord.MessageEmbed()
+        .setTitle('New Payment and User')
+        .setColor('#0099ff')
+        .setDescription(invoicePaid.charges.data.name + '(' + invoicePaid.charges.data.email + ') has paid for this month.');
+
+      webhookClient.send({
+        username: 'Success Bot',
+        avatarURL: 'https://www.americasfinestlabels.com/includes/work/image_cache/a4cb211cac7697694b91b494f3620ca4.thumb.jpg',
+        embeds: [repayembed],
+      });
+      break;
     default:
       return response.status(400).end();
   }
