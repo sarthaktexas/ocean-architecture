@@ -40,16 +40,6 @@ router.post('/webhook', bodyParser.raw({
 
   try {
     event = JSON.parse(request.body);
-    let testAccount = await nodemailer.createTestAccount();
-    let transporter = nodemailer.createTransport({
-      host: "smtp.ethereal.email",
-      port: 587,
-      secure: false,
-      auth: {
-        user: testAccount.user,
-        pass: testAccount.pass,
-      },
-    });
   } catch (err) {
     response.status(400).send(`Webhook Error: ${err.message}`);
   }
@@ -98,6 +88,15 @@ router.post('/webhook', bodyParser.raw({
           body: body,
           headers: headers,
         })
+
+        const transporter = nodemailer.createTransport({
+          host: 'smtp.ethereal.email',
+          port: 587,
+          auth: {
+              user: 'amari.rice25@ethereal.email',
+              pass: 'BDNQ1U4ntX8QAhEG2w'
+          }
+      });
 
       // Send email to user with password.
       let info = transporter.sendMail({
