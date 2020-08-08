@@ -119,7 +119,7 @@ router.post('/webhook', bodyParser.raw({
       const repayembed = new Discord.MessageEmbed()
         .setTitle('New Payment and User')
         .setColor('#0099ff')
-        .setDescription(invoicePaid.charges.data.name + '(' + invoicePaid.charges.data.email + ') has paid for this month.');
+        .setDescription(invoicePaid.charges.data[0].billing_details.name + '(' + invoicePaid.charges.data[0].billing_details.email + ') has paid for this month.');
 
       webhookClient.send({
         username: 'Success Bot',
