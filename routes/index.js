@@ -137,6 +137,7 @@ router.post('/webhook', bodyParser.raw({
 
       fetch(deleteUrl, {
           method: 'DELETE',
+          headers: headers,
         })
         .then(res => res.json())
         .then(json => console.log(json));
