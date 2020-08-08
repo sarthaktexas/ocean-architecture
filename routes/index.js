@@ -106,7 +106,7 @@ router.post('/webhook', bodyParser.raw({
       });
     
       // send mail with defined transport object
-      let info = await transporter.sendMail({
+      let info = transporter.sendMail({
         from: '"Ocean AIO" <ocean@oceanaio.com>', // sender address
         to: paymentIntent.charges.data[0].billing_details.email, // list of receivers
         subject: "Here's your login!", // Subject line
