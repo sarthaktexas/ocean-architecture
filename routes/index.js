@@ -110,7 +110,7 @@ router.post('/webhook', bodyParser.raw({
       });
       break;
     case 'invoice.payment_action_required':
-      const paymentMethod = event.data.object;
+      const paymentRequired = event.data.object;
       break;
     case 'invoice.paid':
       const invoicePaid = event.data.object;
