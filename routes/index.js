@@ -35,12 +35,21 @@ router.get('/', async function (req, res, next) {
 
 router.post('/webhook', bodyParser.raw({
   type: 'application/json'
-}), (request, response) => {
+}), async (request, response) => {
   let event;
 
   try {
     event = JSON.parse(request.body);
-    console.log(event);
+    let testAccount = await nodemailer.createTestAccount();
+    let transporter = await nodemailer.createTransport({
+      host: "smtp.ethereal.email",
+      port: 587,
+      secure: false, // true for 465, false for other ports
+      auth: {
+        user: testAccount.user, // generated ethereal user
+        pass: testAccount.pass, // generated ethereal password
+      },
+    });
   } catch (err) {
     response.status(400).send(`Webhook Error: ${err.message}`);
   }
@@ -91,21 +100,6 @@ router.post('/webhook', bodyParser.raw({
         })
 
       // Send email to user with password.
-
-      let testAccount = nodemailer.createTestAccount();
-
-      // create reusable transporter object using the default SMTP transport
-      let transporter = nodemailer.createTransport({
-        host: "smtp.ethereal.email",
-        port: 587,
-        secure: false, // true for 465, false for other ports
-        auth: {
-          user: testAccount.user, // generated ethereal user
-          pass: testAccount.pass, // generated ethereal password
-        },
-      });
-    
-      // send mail with defined transport object
       let info = transporter.sendMail({
         from: '"Ocean AIO" <ocean@oceanaio.com>', // sender address
         to: paymentIntent.charges.data[0].billing_details.email, // reciever address
