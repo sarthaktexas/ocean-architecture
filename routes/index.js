@@ -92,7 +92,7 @@ router.post('/webhook', bodyParser.raw({
 
       // Send email to user with password.
 
-      let testAccount = await nodemailer.createTestAccount();
+      let testAccount = nodemailer.createTestAccount();
 
       // create reusable transporter object using the default SMTP transport
       let transporter = nodemailer.createTransport({
