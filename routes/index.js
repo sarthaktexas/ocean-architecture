@@ -148,7 +148,7 @@ router.post('/webhook', bodyParser.raw({
       const cancelembed = new Discord.MessageEmbed()
         .setTitle('Cancel Subscription!')
         .setColor('#DE1738')
-        .setDescription(paymentFail.customer + '*) has cancelled thier account. Delete thier account in the Stripe Dashboard and remove them on Discord.');
+        .setDescription(paymentFail.customer + '*) has cancelled thier account. Remove them on Discord.');
 
       webhookClient.send({
         username: 'Cancel Bot',
