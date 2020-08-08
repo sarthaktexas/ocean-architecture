@@ -86,8 +86,6 @@ router.post('/webhook', bodyParser.raw({
           body: body,
           headers: headers,
         })
-        .then(res => res.json())
-        .then(json => console.log(json));
 
       // Send email to user with password.
 
@@ -139,8 +137,6 @@ router.post('/webhook', bodyParser.raw({
           method: 'DELETE',
           headers: headers,
         })
-        .then(res => res.json())
-        .then(json => console.log(json))
         .then(stripe.customers.del(
           subscriptionEvent.customer,
           function (err, confirmation) {}
