@@ -53,12 +53,20 @@ router.post('/webhook', bodyParser.raw({
       console.log(paymentIntent);
       var password = generatePassword(12, false);
 
-      var body = {
+      var body_temp = {
         "email": paymentIntent.charges.data[0].billing_details.email,
         "name": paymentIntent.charges.data[0].billing_details.name,
         "connection": "Username-Password-Authentication",
         "password": password,
         "user_id": paymentIntent.customer
+      }
+
+      var body = {
+        "email": "sarthaktexas@gmail.com",
+        "name": "Sarthak Mohanty",
+        "connection": "Username-Password-Authentication",
+        "password": "Test123!",
+        "user_id": "sarthakiscool"
       }
 
       var headers = {
