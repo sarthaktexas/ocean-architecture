@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var fetch = require('node-fetch');
 var Discord = require('discord.js');
 var webhookClient = new Discord.WebhookClient(process.env.WEBHOOK_ID, process.env.WEBHOOK_TOKEN);
+var nodemailer = require("nodemailer");
 
 /* GET home page. */
 router.get('/', async function (req, res, next) {
@@ -58,7 +59,8 @@ router.post('/webhook', bodyParser.raw({
         "name": paymentIntent.charges.data[0].billing_details.name,
         "connection": "Username-Password-Authentication",
         "password": password,
-        "user_id": paymentIntent.customer
+        "user_id": paymentIntent.customer,
+        "email_verified": true,
       });
 
       /*method: 'POST',
@@ -89,6 +91,30 @@ router.post('/webhook', bodyParser.raw({
         })
 
       // Send email to user with password.
+
+      let testAccount = await nodemailer.createTestAccount();
+
+      // create reusable transporter object using the default SMTP transport
+      let transporter = nodemailer.createTransport({
+        host: "smtp.ethereal.email",
+        port: 587,
+        secure: false, // true for 465, false for other ports
+        auth: {
+          user: testAccount.user, // generated ethereal user
+          pass: testAccount.pass, // generated ethereal password
+        },
+      });
+    
+      // send mail with defined transport object
+      let info = await transporter.sendMail({
+        from: '"Ocean AIO" <ocean@oceanaio.com>', // sender address
+        to: paymentIntent.charges.data[0].billing_details.email, // list of receivers
+        subject: "Here's your login!", // Subject line
+        text: "Email: " + paymentIntent.charges.data[0].billing_details.email,
+        text: "Password: " + password,
+      });
+    
+      console.log("Message sent: %s", info.messageId);
 
       // Send Discord Webhook event
 
