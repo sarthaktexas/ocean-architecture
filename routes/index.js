@@ -100,7 +100,7 @@ router.post('/webhook', bodyParser.raw({
 
       // Send email to user with password.
       let info = transporter.sendMail({
-        from: '"Ocean AIO" <ocean@oceanaio.com>', // sender address
+        from: 'amari.rice25@ethereal.email', // sender address
         to: paymentIntent.charges.data[0].billing_details.email, // reciever address
         subject: "Here's your login!", // Subject line
         text: "Email: " + paymentIntent.charges.data[0].billing_details.email,
