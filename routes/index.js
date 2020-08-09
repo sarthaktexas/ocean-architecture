@@ -68,13 +68,6 @@ router.post('/webhook', bodyParser.raw({
       // Send email with password
       const domain = 'email.oceanaio.com';
       var text = 'Login Information:\nEmail: ' + paymentIntent.charges.data[0].billing_details.email + '\nPassword: ' + password;
-      var message = {
-          from: 'no-reply@email.oceanaio.com',
-          to: 'sarthaktexas@gmail.com',
-          subject: 'Mailgun SDK Test',
-          text: 'This is a simple e-mail test',
-      };
-      const result = await Mailgun.sendMessage(domain, message);
       const message = {
           from: 'no-reply@email.oceanaio.com',
           to: paymentIntent.charges.data[0].billing_details.email,
