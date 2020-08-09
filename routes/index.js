@@ -152,7 +152,7 @@ router.post('/webhook', bodyParser.raw({
       const cancelembed = new Discord.MessageEmbed()
         .setTitle('Cancel Subscription!')
         .setColor('#DE1738')
-        .setDescription(subscriptionEvent.customer + '*) has cancelled thier account. Remove them on Discord.');
+        .setDescription('**' + subscriptionEvent.customer + '** has cancelled thier account. Remove them on Discord.');
 
       webhookClient.send({
         username: 'Cancel Bot',
