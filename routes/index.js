@@ -121,7 +121,7 @@ router.post('/webhook', bodyParser.raw({
         method: 'POST',
         body: body,
         headers: headers,
-      })
+      });
 
       // Send Discord Webhook event
 
