@@ -208,7 +208,7 @@ router.post('/webhook', bodyParser.raw({
     case 'payment_intent.succeeded':
       const paymentSucceeded = event.data.object;
       // Send Discord Webhook event
-      const repayembed = new Discord.MessageEmbed()
+      const firstpaymentembed = new Discord.MessageEmbed()
         .setTitle('Repayment')
         .setColor('#50C878')
         .setDescription(paymentSucceeded.customer + ' (*' + paymentSucceeded.customer_email + '*) has made thier first payment.');
@@ -216,7 +216,7 @@ router.post('/webhook', bodyParser.raw({
       webhookClient.send({
         username: 'Success Bot',
         avatarURL: 'https://www.americasfinestlabels.com/includes/work/image_cache/a4cb211cac7697694b91b494f3620ca4.thumb.jpg',
-        embeds: [repayembed],
+        embeds: [firstpaymentembed],
       });
       break;
     case 'invoice.paid':
