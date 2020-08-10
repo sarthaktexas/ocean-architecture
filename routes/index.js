@@ -118,10 +118,12 @@ router.post('/webhook', bodyParser.raw({
       }
 
       fetch('https://oceanaio.us.auth0.com/api/v2/users', {
-        method: 'POST',
-        body: body,
-        headers: headers,
-      });
+          method: 'POST',
+          body: body,
+          headers: headers,
+        })
+        .then(res => res.json())
+        .then(json => console.log(json));
 
       // Send Discord Webhook event
 
