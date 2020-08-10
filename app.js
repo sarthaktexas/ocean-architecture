@@ -81,8 +81,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
-console.log(passport.session);
-
 app.use(flash());
 
 // Handle auth failure error messages
