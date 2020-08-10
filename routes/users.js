@@ -28,7 +28,7 @@ router.post('/portal', secured(), async function (req, res, next) {
     const profile = JSON.stringify(userProfile, null, 2);
     const id = req.user.id.substring(6);
     console.log(id);
-    if (app.get('env') === 'production') {
+    if (process.env.NODE_ENV === 'production') {
       var session = await stripe.billingPortal.sessions.create({
         customer: id,
         return_url: 'https://oceanaio.com/dashboard',
