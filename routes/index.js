@@ -25,9 +25,11 @@ router.get('/', async function (req, res, next) {
       success_url: "https://oceanaio.com/success",
       cancel_url: "https://oceanaio.com/"
     });
+    const stripePublicKey = process.env.STRIPE_PUBLIC_KEY
     res.render('index', {
       title: "OceanAIO.com | Best group for methods",
-      sessionID: session.id
+      sessionID: session.id,
+      stripe_public_key: stripePublicKey
     });
   } catch (error) {
     console.log(error);

@@ -190,7 +190,7 @@ html(lang='en')
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
           })
-        var stripe = Stripe("pk_test_51H52tVD9X4XcXS1qxFimr5IPmD3k7g9KVIfHaMqtKcGikPhX0iican5n8MsMktsJs8xxdbvE2eQWGm5t3dyOTASI00MABgC2Cv");
+        var stripe = Stripe("#{stripe_public_key}");
         var heroCheckoutButton = document.getElementById('hero-checkout-button');
         heroCheckoutButton.addEventListener('click', function() {
           stripe.redirectToCheckout({
