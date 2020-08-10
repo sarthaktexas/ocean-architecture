@@ -75,8 +75,6 @@ if (app.get('env') === 'production') {
   app.set('trust proxy', 1);
 }
 
-console.log(sess);
-
 app.use(session(sess));
 
 app.use(passport.initialize());
