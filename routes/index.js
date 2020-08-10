@@ -22,8 +22,8 @@ router.get('/', async function (req, res, next) {
         quantity: 1
       }],
       mode: "subscription",
-      success_url: "https://oceanaio.com/dashboard",
-      cancel_url: "https://oceanaio.com/login"
+      success_url: "https://oceanaio.com/success",
+      cancel_url: "https://oceanaio.com/"
     });
     res.render('index', {
       title: "OceanAIO.com | Best group for methods",
@@ -37,6 +37,14 @@ router.get('/', async function (req, res, next) {
   }
 });
 
+/* GET success page. */
+router.get('/success', function (req, res, next) {
+  res.render('success', {
+    title: "OceanAIO.com | Best group for methods"
+  });
+});
+
+/* POST Webhook page. */
 router.post('/webhook', bodyParser.raw({
   type: 'application/json'
 }), async (request, response) => {
@@ -85,7 +93,7 @@ router.post('/webhook', bodyParser.raw({
 
       // Send email with password
       const domain = 'email.oceanaio.com';
-      var text = 'Login Information:\nEmail: ' + paymentIntent.charges.data[0].billing_details.email + '\nPassword: ' + password;
+      var text = 'Login Information:\nLogin Link: https://oceanaio.com/login\nEmail: ' + paymentIntent.charges.data[0].billing_details.email + '\nPassword: ' + password;
       const message = {
         from: 'no-reply@email.oceanaio.com',
         to: paymentIntent.charges.data[0].billing_details.email,
