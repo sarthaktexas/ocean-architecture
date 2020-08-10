@@ -77,28 +77,28 @@ router.post('/webhook', bodyParser.raw({
 
   // Handle the event
   switch (event.type) {
-    case 'payment_intent.succeeded':
+    case 'customer.created':
       /*  When payment succeeded, generate a random password
           and send an API call to Auth0 to create a user */
-      const paymentIntent = event.data.object;
+      const customerIntent = event.data.object;
       const password = generatePassword(12, false);
       console.log(password);
 
       var body = JSON.stringify({
-        "email": paymentIntent.charges.data[0].billing_details.email,
-        "name": paymentIntent.charges.data[0].billing_details.name,
+        "email": customerIntent.email,
+        "name": customerIntent.name,
         "connection": "Username-Password-Authentication",
         "password": password,
-        "user_id": paymentIntent.customer,
+        "user_id": customerIntent.id,
         "email_verified": true,
       });
 
       // Send email with password
       const domain = 'email.oceanaio.com';
-      var text = 'Login Information:\nLogin Link: https://oceanaio.com/login\nEmail: ' + paymentIntent.charges.data[0].billing_details.email + '\nPassword: ' + password;
+      var text = 'Login Information:\nLogin Link: https://oceanaio.com/login\nEmail: ' + customerIntent.email + '\nPassword: ' + password;
       const message = {
         from: 'no-reply@email.oceanaio.com',
-        to: paymentIntent.charges.data[0].billing_details.email,
+        to: customerIntent.email,
         subject: 'Login Information for OceanAIO',
         text: text,
       };
@@ -128,7 +128,7 @@ router.post('/webhook', bodyParser.raw({
       const successembed = new Discord.MessageEmbed()
         .setTitle('New Payment and User')
         .setColor('#50C878')
-        .setDescription(paymentIntent.charges.data[0].billing_details.name + ' (*' + paymentIntent.charges.data[0].billing_details.email + '*) has signed up and paid.');
+        .setDescription(customerIntent.name + ' (*' + customerIntent.email + '*) has signed up and paid.');
 
       webhookClient.send({
         username: 'Success Bot',
