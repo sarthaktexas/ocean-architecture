@@ -128,9 +128,9 @@ router.post('/webhook', bodyParser.raw({
       // Send Discord Webhook event
 
       const successembed = new Discord.MessageEmbed()
-        .setTitle('New Payment and User')
+        .setTitle('New User')
         .setColor('#50C878')
-        .setDescription(customerIntent.name + ' (*' + customerIntent.email + '*) has signed up and paid.');
+        .setDescription(customerIntent.name + ' (*' + customerIntent.email + '*) has signed up.');
 
       webhookClient.send({
         username: 'Success Bot',
@@ -203,6 +203,20 @@ router.post('/webhook', bodyParser.raw({
         username: 'Cancel Bot',
         avatarURL: 'https://www.logolynx.com/images/logolynx/cc/cc69b8e3f205d98a6586a715df8f9b92.gif',
         embeds: [cancelembed],
+      });
+      break;
+    case 'payment_intent.succeeded':
+      const invoicePaid = event.data.object;
+      // Send Discord Webhook event
+      const repayembed = new Discord.MessageEmbed()
+        .setTitle('Repayment')
+        .setColor('#50C878')
+        .setDescription(invoicePaid.customer + ' (*' + invoicePaid.customer_email + '*) has made thier first payment.');
+
+      webhookClient.send({
+        username: 'Success Bot',
+        avatarURL: 'https://www.americasfinestlabels.com/includes/work/image_cache/a4cb211cac7697694b91b494f3620ca4.thumb.jpg',
+        embeds: [repayembed],
       });
       break;
     case 'invoice.paid':
