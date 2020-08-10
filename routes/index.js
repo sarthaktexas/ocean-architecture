@@ -182,7 +182,6 @@ router.post('/webhook', bodyParser.raw({
     case 'invoice.paid':
       const invoicePaid = event.data.object;
       // Send Discord Webhook event
-
       const repayembed = new Discord.MessageEmbed()
         .setTitle('Repayment')
         .setColor('#50C878')
