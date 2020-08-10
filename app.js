@@ -58,7 +58,7 @@ var sess = {
     checkPeriod: 86400000 // prune expired entries every 24h
   }),
   secret: 'oceanonlyy',
-  cookie: {},
+  cookie: { sameSite: false },
   resave: false,
   saveUninitialized: true
 };
@@ -72,7 +72,7 @@ if (app.get('env') === 'production') {
   // Ref: https://github.com/auth0/passport-auth0/issues/70#issuecomment-480771614
   // Ref: https://www.npmjs.com/package/express-session#cookiesecure
   app.set('trust proxy', 1);
-  
+  sess.proxy = true
   sess.cookie.secure = true; // serve secure cookies, requires https
 }
 
