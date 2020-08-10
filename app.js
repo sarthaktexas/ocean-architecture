@@ -71,8 +71,8 @@ if (app.get('env') === 'production') {
   // errors with passport-auth0.
   // Ref: https://github.com/auth0/passport-auth0/issues/70#issuecomment-480771614
   // Ref: https://www.npmjs.com/package/express-session#cookiesecure
-  sess.cookie.secure = true; // serve secure cookies, requires https
-  app.set('trust proxy', 2);
+  //sess.cookie.secure = true; // serve secure cookies, requires https
+  app.set('trust proxy', 1);
 }
 
 console.log(sess);
