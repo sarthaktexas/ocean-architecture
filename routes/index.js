@@ -163,7 +163,21 @@ router.post('/webhook', bodyParser.raw({
         })
         .then(stripe.customers.del(
           subscriptionEvent.customer,
-          function (err, confirmation) {}
+          function (err, confirmation) {
+            if (err) {
+              console.log(err);
+              webhookClient.send('Failed to delete user', {
+                username: 'Error Bot',
+                avatarURL: 'https://www.logolynx.com/images/logolynx/cc/cc69b8e3f205d98a6586a715df8f9b92.gif',
+              });
+            }
+            if (confirmation) {
+              webhookClient.send('Deleted user from Stripe and Auth0. Delete the user here too.', {
+                username: 'Delete Bot',
+                avatarURL: 'https://www.logolynx.com/images/logolynx/cc/cc69b8e3f205d98a6586a715df8f9b92.gif',
+              });
+            }
+          }
         ));
 
       // Send Discord Webhook event
