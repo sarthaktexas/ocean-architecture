@@ -25,7 +25,6 @@ router.get('/', async function (req, res, next) {
       success_url: "https://oceanaio.com/dashboard",
       cancel_url: "https://oceanaio.com/login"
     });
-
     res.render('index', {
       title: "OceanAIO.com | Best group for methods",
       sessionID: session.id
@@ -60,7 +59,7 @@ router.post('/webhook', bodyParser.raw({
       }
     });
     var token = tokenRequest.data.access_token;
-    var authenticationHeader = 'Header ' + token;
+    var authenticationHeader = 'Bearer ' + token;
 
   } catch (err) {
     response.status(400).send(`Webhook Error: ${err.message}`);
