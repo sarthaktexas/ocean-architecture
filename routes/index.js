@@ -86,7 +86,6 @@ router.post('/webhook', bodyParser.raw({
 
       var body = JSON.stringify({
         "email": customerIntent.email,
-        "name": customerIntent.name,
         "connection": "Username-Password-Authentication",
         "password": password,
         "user_id": customerIntent.id,
@@ -225,7 +224,7 @@ router.post('/webhook', bodyParser.raw({
       const repayembed = new Discord.MessageEmbed()
         .setTitle('Repayment')
         .setColor('#50C878')
-        .setDescription(invoicePaid.billing_details.name + ' (*' + invoicePaid.billing_details.email + '*) has paid for this month.');
+        .setDescription(invoicePaid.customer + ' (*' + invoicePaid.customer_email + ' has paid for this month.');
 
       webhookClient.send({
         username: 'Success Bot',
