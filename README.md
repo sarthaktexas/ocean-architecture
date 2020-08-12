@@ -4,6 +4,8 @@
 
 Install the dependencies.
 
+Copy `.env.example` to `.env` and fill in necessary environment variables.
+
 ```bash
 npm install
 ```
@@ -26,5 +28,7 @@ Execute in command line `sh exec.sh` to run the Docker in Linux, or `.\exec.ps1`
 [Sarthak Mohanty](https://srtk.me)
 
 ## License
-
-This project is private. It may not be used for personal or private use. It may not be rebranded or used in any other way unless otherwise given permission by the owner.
+### Front-End
+This part of the project is private. It may not be used for personal or private use. It may not be rebranded or used in any other way unless otherwise given permission by the owner. However, you may use the back-end code.
+### Back-End
+This part is licensed under MIT. Feel free to use it.
