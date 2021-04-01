@@ -51,7 +51,7 @@ router.post('/webhook', bodyParser.raw({
     type: 'application/json'
 }), async (request, response) => {
     let event;
-    if (event.data.object.lines.data[0].plan.product == process.env.STRIPE_PRICE_ID) {
+    if (event.data.object.lines.data[0].plan.id == process.env.STRIPE_PRICE_ID) {
         try {
             event = JSON.parse(request.body);
 
