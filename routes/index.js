@@ -51,7 +51,7 @@ router.post('/webhook', bodyParser.raw({
     type: 'application/json'
 }), async (request, response) => {
     let event;
-    if (event.data.object.lines.data[0].plan.id == process.env.STRIPE_PRICE_ID) {
+    //if (event.data.object.lines.data[0].plan.id == process.env.STRIPE_PRICE_ID) {
         try {
             event = JSON.parse(request.body);
 
@@ -237,7 +237,7 @@ router.post('/webhook', bodyParser.raw({
             default:
                 return response.status(400).end();
         }
-    }
+    //}
     // Return a response to acknowledge receipt of the event
     response.json({
         received: true
